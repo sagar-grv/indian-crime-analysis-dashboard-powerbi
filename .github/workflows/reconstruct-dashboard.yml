@@ -1,0 +1,42 @@
+name: Reconstruct Power BI dashboard
+
+on:
+  push:
+    paths:
+      - "artifact_parts/**"
+      - "artifact_manifest.json"
+      - "scripts/reconstruct_dashboard.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reconstruct-powerbi-dashboard
+  cancel-in-progress: false
+
+jobs:
+  reconstruct:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reconstruct and verify dashboard
+        run: python scripts/reconstruct_dashboard.py
+      - name: Commit verified binary
+        run: |
+          OUTPUT=$(python -c 'import json; print(json.load(open("artifact_manifest.json"))["output_path"])')
+          if [ ! -f "$OUTPUT" ]; then
+            echo "Not all parts are present yet."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUTPUT"
+          if git diff --cached --quiet; then
+            echo "Dashboard already reconstructed."
+            exit 0
+          fi
+          git commit -m "Add checksum-verified Power BI dashboard artifact"
+          git push
