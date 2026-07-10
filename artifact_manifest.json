@@ -5,7 +5,7 @@
   "original_sha256": "8d6fde4dfb120ca98f93dc4d4db8f661742f0bb06bb57f82decd5d781de12984",
   "compressed_size_bytes": 23316,
   "base64_characters": 31088,
-  "chunk_count": 2,
-  "chunk_size_characters": 18000,
+  "chunk_count": 8,
+  "chunk_size_characters": 4000,
   "parts_pattern": "artifact_parts/part-*.b64"
 }
