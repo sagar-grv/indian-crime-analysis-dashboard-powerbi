@@ -1,0 +1,66 @@
+{
+  "project": "Indian Crime Analysis Dashboard",
+  "repository": "https://github.com/sagar-grv/indian-crime-analysis-dashboard-powerbi",
+  "artifact": "dashboard/Indian_Crime_Analysis_Dashboard.pbit",
+  "file_size_bytes": 23928,
+  "sha256": "8d6fde4dfb120ca98f93dc4d4db8f661742f0bb06bb57f82decd5d781de12984",
+  "page_count": 3,
+  "visual_container_count": 24,
+  "pages": [
+    {
+      "name": "National Overview",
+      "visual_count": 12,
+      "visual_types": {
+        "card": 6,
+        "lineChart": 1,
+        "decompositionTree": 1,
+        "clusteredBarChart": 1,
+        "map": 1,
+        "textbox": 1,
+        "actionButton": 1
+      }
+    },
+    {
+      "name": "State Deep-Dive",
+      "visual_count": 6,
+      "visual_types": {
+        "funnel": 1,
+        "clusteredColumnChart": 1,
+        "multiRowCard": 1,
+        "table": 1,
+        "slicer": 1,
+        "textbox": 1
+      }
+    },
+    {
+      "name": "DISTRICT WISE DIVE",
+      "visual_count": 6,
+      "visual_types": {
+        "card": 2,
+        "table": 1,
+        "line/stacked-column combo": 1,
+        "textbox": 1,
+        "slicer": 1
+      }
+    }
+  ],
+  "referenced_fields": [
+    "State",
+    "District",
+    "Year",
+    "Murder",
+    "Rape",
+    "Robbery",
+    "Theft",
+    "Kidnapping",
+    "Total_IPC_Crimes"
+  ],
+  "data_lineage_note": "Power BI template with a local CSV query. Dataset rows are not embedded in the PBIT; a schema template and data dictionary are supplied for reproducibility.",
+  "verification_basis": [
+    "Report/Layout",
+    "DataModelSchema"
+  ],
+  "explicit_measure_count": 18,
+  "analysis_period": "2001-2014",
+  "known_quality_issue": "Total Robbery measure sums crime_data[Theft] in the supplied template."
+}
